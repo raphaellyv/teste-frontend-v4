@@ -6,7 +6,8 @@ export async function getPositionData() {
   const positionHistory = JSON.parse(positionHistoryFile);
 
   const lastPositions = positionHistory.map((history) => {
-    const lastPosition = history.positions.pop();
+    const positions = history.positions;
+    const lastPosition = positions[positions.length - 1];
 
     return(
       { equipmentId: history.equipmentId,
@@ -26,19 +27,31 @@ export async function getStateData() {
   const equipmentStatesFile = await fs.readFile(process.cwd() + '/src/data/equipmentState.json', 'utf8');
   const equipmentStates = JSON.parse(equipmentStatesFile);
 
-  
-
   const lastStates = stateHistory.map((history) => {
-    const lastStateId = history.states.pop().equipmentStateId;
+    const states = history.states;
+    const lastStateId = states[states.length - 1].equipmentStateId;
     const lastState = equipmentStates.find((state) => state.id === lastStateId);
 
+    const formattedStates = states.map((state) => {
+      const equipmentState = equipmentStates.find((stateInfo) => stateInfo.id === state.equipmentStateId);
+      
+      return (
+        {
+          date: state.date,
+          name: equipmentState.name,
+        }
+      )
+    })
 
     return(
       { 
         equipmentId: history.equipmentId,
-        stateId: lastState.id,
+        lastState: {
+         stateId: lastState.id,
         name: lastState.name,
-        color: lastState.color,
+        color: lastState.color, 
+        },
+        states: formattedStates,
       }
     )
   });
@@ -56,43 +69,12 @@ export async function getEquipmentData() {
     return(
       {
         lastPosition: position,
-        lastState: equipmentState,
+        lastState: equipmentState.lastState,
+        stateHistory: equipmentState.states,
       }
     )
   });
 
   return equipmentData;
-}
-
-export async function getStateHistory() {
-  const stateHistoryFile = await fs.readFile(process.cwd() + '/src/data/equipmentStateHistory.json', 'utf8');
-  const stateHistory = JSON.parse(stateHistoryFile);
-
-  const equipmentStatesFile = await fs.readFile(process.cwd() + '/src/data/equipmentState.json', 'utf8');
-  const equipmentStates = JSON.parse(equipmentStatesFile);
-
-  const formattedHistoryData = stateHistory.map((data) => {
-    const states = data.states;
-
-    const formattedStates = states.map((state) => {
-      const equipmentState = equipmentStates.find((stateInfo) => stateInfo.id === state.equipmentStateId);
-      
-      return (
-        {
-          date: state.date,
-          name: equipmentState.name,
-        }
-      )
-    })
-
-    return (
-      {
-        equipmentId: data.equipmentId,
-        states: formattedStates,
-      }
-    );
-  })
-
-  return formattedHistoryData;
 }
 

@@ -14,17 +14,13 @@ export default function MarkersList() {
     getEquipmentData()
       .then((result) => {
         setEquipmentData(result);
-      });
-
-    getStateHistory()
-      .then((result) => {
         console.log(result);
-      })
+      });
   }, [])
 
   return (
     equipmentData && (
-      equipmentData.map(({lastPosition, lastState}) => (
+      equipmentData.map(({lastPosition, lastState, stateHistory}) => (
         <CircleMarker
           key={lastPosition.equipmentId}
           center={[lastPosition.lastLat, lastPosition.lastLon]}
