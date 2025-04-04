@@ -1,29 +1,34 @@
 import { CircleMarker, Popup } from 'react-leaflet';
 import { useState, useEffect } from "react";
-import { getData } from '@/lib/getData';
+import { getEquipmentData } from '@/lib/getData';
 
 export default function MarkersList() {
-  const [lastPositions, setLastPositions] = useState(null);
+  const [equipmentData, setEquipmentData] = useState(null);
+  const colors = {
+    "#2ecc71": "text-[#2ecc71]",
+    "#f1c40f": "text-[#f1c40f]",
+    "#e74c3c": "text-[#e74c3c]",
+  }
 
   useEffect(() => {
-    getData()
+    getEquipmentData()
       .then((result) => {
-        setLastPositions(result);
+        setEquipmentData(result);
       });
   }, [])
 
   return (
-    lastPositions && (
-      lastPositions.map((position) => (
+    equipmentData && (
+      equipmentData.map(({lastPosition, lastState}) => (
         <CircleMarker
-          key={position.equipmentId}
-          center={[position.lastLat, position.lastLon]}
-          color="red"
-          fillColor="#f03"
+          key={lastPosition.equipmentId}
+          center={[lastPosition.lastLat, lastPosition.lastLon]}
+          color={lastState.color}
+          fillColor={lastState.color}
           radius={20}
         >
           <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
+            <strong className={colors[lastState.color]}>{lastState.name}</strong>
           </Popup>
         </CircleMarker>
       ))
