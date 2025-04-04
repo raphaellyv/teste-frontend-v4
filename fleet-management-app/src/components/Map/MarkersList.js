@@ -1,4 +1,4 @@
-import { CircleMarker, Popup } from 'react-leaflet';
+import { CircleMarker, Popup, Tooltip } from 'react-leaflet';
 import { useState, useEffect } from "react";
 import { getEquipmentData } from '@/lib/getData';
 
@@ -27,6 +27,10 @@ export default function MarkersList() {
           fillColor={lastState.color}
           radius={20}
         >
+          <Tooltip sticky>
+            <strong className={colors[lastState.color]}>{lastState.name}</strong>
+          </Tooltip>
+          
           <Popup>
             <strong className={colors[lastState.color]}>{lastState.name}</strong>
           </Popup>
