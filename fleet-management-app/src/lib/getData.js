@@ -34,7 +34,8 @@ export async function getStateData() {
 
 
     return(
-      { equipmentId: history.equipmentId,
+      { 
+        equipmentId: history.equipmentId,
         stateId: lastState.id,
         name: lastState.name,
         color: lastState.color,
@@ -60,5 +61,38 @@ export async function getEquipmentData() {
     )
   });
 
-  return(equipmentData)
+  return equipmentData;
 }
+
+export async function getStateHistory() {
+  const stateHistoryFile = await fs.readFile(process.cwd() + '/src/data/equipmentStateHistory.json', 'utf8');
+  const stateHistory = JSON.parse(stateHistoryFile);
+
+  const equipmentStatesFile = await fs.readFile(process.cwd() + '/src/data/equipmentState.json', 'utf8');
+  const equipmentStates = JSON.parse(equipmentStatesFile);
+
+  const formattedHistoryData = stateHistory.map((data) => {
+    const states = data.states;
+
+    const formattedStates = states.map((state) => {
+      const equipmentState = equipmentStates.find((stateInfo) => stateInfo.id === state.equipmentStateId);
+      
+      return (
+        {
+          date: state.date,
+          name: equipmentState.name,
+        }
+      )
+    })
+
+    return (
+      {
+        equipmentId: data.equipmentId,
+        states: formattedStates,
+      }
+    );
+  })
+
+  return formattedHistoryData;
+}
+

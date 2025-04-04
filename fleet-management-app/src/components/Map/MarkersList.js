@@ -1,6 +1,6 @@
 import { CircleMarker, Popup, Tooltip } from 'react-leaflet';
 import { useState, useEffect } from "react";
-import { getEquipmentData } from '@/lib/getData';
+import { getEquipmentData, getStateHistory } from '@/lib/getData';
 
 export default function MarkersList() {
   const [equipmentData, setEquipmentData] = useState(null);
@@ -15,6 +15,11 @@ export default function MarkersList() {
       .then((result) => {
         setEquipmentData(result);
       });
+
+    getStateHistory()
+      .then((result) => {
+        console.log(result);
+      })
   }, [])
 
   return (
@@ -30,7 +35,7 @@ export default function MarkersList() {
           <Tooltip sticky>
             <strong className={colors[lastState.color]}>{lastState.name}</strong>
           </Tooltip>
-          
+
           <Popup>
             <strong className={colors[lastState.color]}>{lastState.name}</strong>
           </Popup>
