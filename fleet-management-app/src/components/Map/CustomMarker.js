@@ -28,7 +28,7 @@ export default function CustomMarker({
 
       <Popup
         maxHeight={300}
-        minWidth={400}
+        minWidth={350}
         className="text-lg"
       >
         <StateHistoryTable

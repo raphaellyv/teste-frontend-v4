@@ -2,10 +2,12 @@ import { format } from "date-fns";
 
 export default function StateHistoryTable({ stateHistory }) {
   const formatDate = (dateTime) => format(dateTime, 'dd/MM/yyyy');
-  const formatTime = (dateTime) => format(dateTime, 'pp');
+  const formatTime = (dateTime) => format(dateTime, 'p');
 
   return (
-    <table className="w-full">
+    <table 
+      className="w-full border-separate border-spacing-2"
+    >
       <thead>
         <tr>
           <th>Data</th>
