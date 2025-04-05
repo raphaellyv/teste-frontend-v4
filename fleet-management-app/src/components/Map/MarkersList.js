@@ -9,7 +9,6 @@ export default function MarkersList() {
     getEquipmentData()
       .then((result) => {
         setEquipmentData(result);
-        console.log(result);
       });
   }, [])
 
