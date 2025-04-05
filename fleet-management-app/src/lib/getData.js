@@ -1,6 +1,5 @@
 "use server"
 import { promises as fs } from "fs";
-import { parseISO, format } from "date-fns";
 
 export async function getPositionData() {
   const positionHistoryFile = await fs.readFile(process.cwd() + '/src/data/equipmentPositionHistory.json', 'utf8');
@@ -28,36 +27,31 @@ export async function getStateData() {
   const equipmentStatesFile = await fs.readFile(process.cwd() + '/src/data/equipmentState.json', 'utf8');
   const equipmentStates = JSON.parse(equipmentStatesFile);
 
-  const lastStates = stateHistory.map((history) => {
+  const statesData = stateHistory.map((history) => {
     const states = history.states;
 
     const formattedStates = states.map((state) => {
       const equipmentState = equipmentStates.find((stateInfo) => stateInfo.id === state.equipmentStateId);
-      const dateTime = parseISO(state.date);
-      const formattedDate = format(dateTime, 'dd/MM/yyyy');
-      const formattedTime = format(dateTime, 'pp');
 
       return (
         {
-          dateTime: dateTime,
-          date: formattedDate,
-          time: formattedTime,
+          dateTime: state.date,
           name: equipmentState.name,
           color: equipmentState.color,
         }
       )
     })
 
-    return(
+    return (
       { 
         equipmentId: history.equipmentId,
         lastState: formattedStates[formattedStates.length - 1],
-        states: formattedStates,
+        stateHistory: formattedStates,
       }
     )
   });
 
-  return lastStates;
+  return statesData;
 }
 
 export async function getEquipmentData() {
@@ -67,11 +61,11 @@ export async function getEquipmentData() {
   const equipmentData = positionData.map((position) => {
     const equipmentState = stateData.find((state) => state.equipmentId === position.equipmentId);
 
-    return(
+    return (
       {
         lastPosition: position,
         lastState: equipmentState.lastState,
-        stateHistory: equipmentState.states,
+        stateHistory: equipmentState.stateHistory,
       }
     )
   });

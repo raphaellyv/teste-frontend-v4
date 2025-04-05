@@ -1,4 +1,5 @@
 import { CircleMarker, Popup, Tooltip } from 'react-leaflet';
+import StateHistoryTable from './StateHistoryTable';
 
 export default function CustomMarker({
   lastPosition,
@@ -27,18 +28,12 @@ export default function CustomMarker({
 
       <Popup
         maxHeight={300}
+        minWidth={400}
         className="text-lg"
       >
-        <ul>
-          { stateHistory.map((state) => (
-              <li
-                key={state.dateTime}
-              >
-                {state.date}, {state.time}: {state.name}
-              </li>
-            ))
-          }
-        </ul>           
+        <StateHistoryTable
+          stateHistory={stateHistory}
+        />
       </Popup>
     </CircleMarker>
   )
