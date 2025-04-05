@@ -1,5 +1,6 @@
 "use server"
 import { promises as fs } from "fs";
+import { parseISO, format } from "date-fns";
 
 export async function getPositionData() {
   const positionHistoryFile = await fs.readFile(process.cwd() + '/src/data/equipmentPositionHistory.json', 'utf8');
@@ -29,16 +30,20 @@ export async function getStateData() {
 
   const lastStates = stateHistory.map((history) => {
     const states = history.states;
-    const lastStateId = states[states.length - 1].equipmentStateId;
-    const lastState = equipmentStates.find((state) => state.id === lastStateId);
 
     const formattedStates = states.map((state) => {
       const equipmentState = equipmentStates.find((stateInfo) => stateInfo.id === state.equipmentStateId);
-      
+      const dateTime = parseISO(state.date);
+      const formattedDate = format(dateTime, 'dd/MM/yyyy');
+      const formattedTime = format(dateTime, 'pp');
+
       return (
         {
-          date: state.date,
+          dateTime: dateTime,
+          date: formattedDate,
+          time: formattedTime,
           name: equipmentState.name,
+          color: equipmentState.color,
         }
       )
     })
@@ -46,11 +51,7 @@ export async function getStateData() {
     return(
       { 
         equipmentId: history.equipmentId,
-        lastState: {
-         stateId: lastState.id,
-        name: lastState.name,
-        color: lastState.color, 
-        },
+        lastState: formattedStates[formattedStates.length - 1],
         states: formattedStates,
       }
     )
