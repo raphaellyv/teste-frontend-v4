@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getEquipmentData } from '@/lib/getData';
+import getEquipmentData from '@/lib/getEquipmentData';
 import CustomMarker from "./CustomMarker";
 
 export default function MarkersList() {
