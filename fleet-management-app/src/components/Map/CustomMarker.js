@@ -33,6 +33,7 @@ export default function CustomMarker({
       >
         <StateHistoryTable
           stateHistory={stateHistory}
+          textColors={textColors}
         />
       </Popup>
     </CircleMarker>
