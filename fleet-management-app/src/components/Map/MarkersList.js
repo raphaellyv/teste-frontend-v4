@@ -1,4 +1,3 @@
-// import { CircleMarker, Popup, Tooltip } from 'react-leaflet';
 import { useState, useEffect } from "react";
 import { getEquipmentData } from '@/lib/getData';
 import CustomMarker from "./CustomMarker";
