@@ -1,7 +1,7 @@
 import 'leaflet/dist/leaflet.css';
 
 import { MapContainer, TileLayer } from 'react-leaflet';
-import MarkersList from './MarkersList';
+import MarkersList from '../MarkersList';
 
 export default function Map() {
   return (
