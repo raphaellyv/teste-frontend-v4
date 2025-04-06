@@ -1,10 +1,7 @@
-"use server"
+import getData from "./getDataFromFile";
 
-import { promises as fs } from "fs";
-
-export default async function getPositionData() {
-  const positionHistoryFile = await fs.readFile(process.cwd() + '/src/data/equipmentPositionHistory.json', 'utf8');
-  const positionHistory = JSON.parse(positionHistoryFile);
+export const formatPositionData = async function (filePath) {
+  const positionHistory = await getData(filePath);
 
   const lastPositions = positionHistory.map((history) => {
     const positions = history.positions;
@@ -20,3 +17,5 @@ export default async function getPositionData() {
 
   return lastPositions;
 }
+
+export default formatPositionData;
