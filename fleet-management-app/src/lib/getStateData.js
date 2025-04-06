@@ -1,13 +1,8 @@
-"use server"
+import getData from "./getDataFromFile";
 
-import { promises as fs } from "fs";
-
-export default async function getStateData() {
-  const stateHistoryFile = await fs.readFile(process.cwd() + '/src/data/equipmentStateHistory.json', 'utf8');
-  const stateHistory = JSON.parse(stateHistoryFile);
-
-  const equipmentStatesFile = await fs.readFile(process.cwd() + '/src/data/equipmentState.json', 'utf8');
-  const equipmentStates = JSON.parse(equipmentStatesFile);
+const getStateData = async function (stateHistoryFile) {
+  const stateHistory = await getData(stateHistoryFile);
+  const equipmentStates = await getData('/src/data/equipmentState.json');
 
   const statesData = stateHistory.map((history) => {
     const states = history.states;
@@ -35,3 +30,5 @@ export default async function getStateData() {
 
   return statesData;
 }
+
+export default getStateData;
