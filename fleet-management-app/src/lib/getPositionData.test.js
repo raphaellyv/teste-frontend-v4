@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import getPositionData from './getPositionData';
 
 describe('getPositionData', () => {
-  it('formats position data and returns a promise ', () => {
+  it('formats position data and returns a promise ', async () => {
     const testFilePath = '/src/data/test/equipmentPositionHistory.json'
     const expectedResponse = [
       {
@@ -20,6 +20,6 @@ describe('getPositionData', () => {
       }
     ]
     
-    expect(getPositionData(testFilePath)).resolves.toEqual(expectedResponse);
+    await expect(getPositionData(testFilePath)).resolves.toEqual(expectedResponse);
   })
 })
