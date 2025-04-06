@@ -18,7 +18,7 @@ describe('getEquipmentData', () => {
         },
         stateHistory: [
           {
-            dateTime: "2021-02-01T03:00:00.000Z",
+            dateTime: "2021-02-01T12:00:00.000Z",
             name: "Manutenção",
             color: "#e74c3c"
           },
@@ -28,10 +28,11 @@ describe('getEquipmentData', () => {
             color: "#f1c40f"
           },
           {
-            dateTime: "2021-02-01T12:00:00.000Z",
+            dateTime: "2021-02-01T03:00:00.000Z",
             name: "Manutenção",
             color: "#e74c3c"
-          },
+          }
+          ,
         ]
       },
       {
@@ -47,9 +48,9 @@ describe('getEquipmentData', () => {
         },
         stateHistory: [
           {
-            dateTime: "2021-02-01T03:00:00.000Z",
-            name: "Parado",
-            color: "#f1c40f"
+            dateTime: "2021-02-01T22:00:00.000Z",
+            name: "Manutenção",
+            color: "#e74c3c"
           },
           {
             dateTime: "2021-02-01T06:00:00.000Z",
@@ -57,9 +58,9 @@ describe('getEquipmentData', () => {
             color: "#2ecc71"
           },
           {
-            dateTime: "2021-02-01T22:00:00.000Z",
-            name: "Manutenção",
-            color: "#e74c3c"
+            dateTime: "2021-02-01T03:00:00.000Z",
+            name: "Parado",
+            color: "#f1c40f"
           },
         ]
       },
@@ -76,9 +77,9 @@ describe('getEquipmentData', () => {
         },
         stateHistory: [
           {
-            dateTime: "2021-02-01T03:00:00.000Z",
-            name: "Manutenção",
-            color: "#e74c3c"
+            dateTime: "2021-02-01T07:00:00.000Z",
+            name: "Operando",
+            color: "#2ecc71"
           },
           {
             dateTime: "2021-02-01T05:00:00.000Z",
@@ -86,9 +87,9 @@ describe('getEquipmentData', () => {
             color: "#f1c40f"
           },
           {
-            dateTime: "2021-02-01T07:00:00.000Z",
-            name: "Operando",
-            color: "#2ecc71"
+            dateTime: "2021-02-01T03:00:00.000Z",
+            name: "Manutenção",
+            color: "#e74c3c"
           },
         ]
       }

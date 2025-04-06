@@ -5,7 +5,7 @@ const getStateData = async function (stateHistoryFile) {
   const equipmentStates = await getData('/src/data/equipmentState.json');
 
   const statesData = stateHistory.map((history) => {
-    const states = history.states;
+    const states = history.states.sort((a, b) => { return new Date(b.date) - new Date(a.date)});
 
     const formattedStates = states.map((state) => {
       const equipmentState = equipmentStates.find((stateInfo) => stateInfo.id === state.equipmentStateId);
@@ -22,7 +22,7 @@ const getStateData = async function (stateHistoryFile) {
     return (
       { 
         equipmentId: history.equipmentId,
-        lastState: formattedStates[formattedStates.length - 1],
+        lastState: formattedStates[0],
         stateHistory: formattedStates,
       }
     )
