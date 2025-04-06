@@ -5,9 +5,9 @@ Aplicação para gestão de frota desenvolvida como parte do Teste Frontend Aiko
 
 * [🎯 **Proposta**](#-proposta)
 * [💻 **Funcionalidades**](#-funcionalidades)
-* [🛠️ **Tech Stack**](#-tech-stack)
-* [▶️ **Como Executar Aplicação**](#-como-executar-aplicação)
-* [📝 **Como Executar os Testes**](#-como-executar-os-testes)
+* [🛠️ **Tech Stack**](#️-tech-stack)
+* [▶️ **Como Executar a Aplicação**](#️-como-executar-a-aplicação)
+* [📝 **Como Executar os Testes**](#-como-executar-os-testess)
 * [📌 **Informações Adicionais**](#-informações-adicionais)
 
 ## 🎯 Proposta
