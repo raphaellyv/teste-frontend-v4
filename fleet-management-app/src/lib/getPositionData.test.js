@@ -1,9 +1,8 @@
-import '@testing-library/jest-dom';
 import getPositionData from './getPositionData';
 
 describe('getPositionData', () => {
-  it('formats position data and returns a promise ', async () => {
-    const testFilePath = '/src/data/test/equipmentPositionHistory.json'
+  it('formats position data and returns a promise', async () => {
+    const testFilePath = '/src/data/test/equipmentPositionHistory.json';
     const expectedResponse = [
       {
         equipmentId: "a7c53eb1-4f5e-4eba-9764-ad205d0891f9",
@@ -20,7 +19,7 @@ describe('getPositionData', () => {
         lastLat: -19.223635,
         lastLon: -46.136626
       }
-    ]
+    ];
     
     await expect(getPositionData(testFilePath)).resolves.toEqual(expectedResponse);
   })

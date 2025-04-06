@@ -6,7 +6,10 @@ export default function MarkersList() {
   const [equipmentData, setEquipmentData] = useState(null);
 
   useEffect(() => {
-    getEquipmentData()
+    getEquipmentData({
+      positionHistoryFilePath: "/src/data/equipmentPositionHistory.json",
+      stateHistoryFilePath: "/src/data/equipmentStateHistory.json"
+    })
       .then((result) => {
         setEquipmentData(result);
       });

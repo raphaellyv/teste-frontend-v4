@@ -1,11 +1,9 @@
-"use server"
-
 import getPositionData from "./getPositionData";
 import getStateData from "./getStateData";
 
-export default async function getEquipmentData() {
-  const positionData = await getPositionData();
-  const stateData = await getStateData();
+export const getEquipmentData = async function ({ positionHistoryFilePath, stateHistoryFilePath }) {
+  const positionData = await getPositionData(positionHistoryFilePath);
+  const stateData = await getStateData(stateHistoryFilePath);
 
   const equipmentData = positionData.map((position) => {
     const equipmentState = stateData.find((state) => state.equipmentId === position.equipmentId);
@@ -22,3 +20,4 @@ export default async function getEquipmentData() {
   return equipmentData;
 }
 
+export default getEquipmentData;
