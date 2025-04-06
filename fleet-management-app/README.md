@@ -8,7 +8,7 @@ Aplicação para gestão de frota desenvolvida como parte do Teste Frontend Aiko
 * [🛠️ **Tech Stack**](#️-tech-stack)
 * [▶️ **Como Executar a Aplicação**](#️-como-executar-a-aplicação)
 * [📝 **Como Executar os Testes**](#-como-executar-os-testes)
-* [## 📝 Como Executar o ESLint](#-como-executar-o-eslint)
+* [📝 **Como Executar o ESLint**](#-como-executar-o-eslint)
 * [📌 **Informações Adicionais**](#-informações-adicionais)
 
 ## 🎯 Proposta
