@@ -9,7 +9,6 @@ Aplicação para gestão de frota desenvolvida como parte do Teste Frontend Aiko
 * [▶️ **Como Executar a Aplicação**](#️-como-executar-a-aplicação)
 * [📝 **Como Executar os Testes**](#-como-executar-os-testes)
 * [📝 **Como Executar o ESLint**](#-como-executar-o-eslint)
-* [📌 **Informações Adicionais**](#-informações-adicionais)
 
 ## 🎯 Proposta
 
@@ -32,6 +31,7 @@ Desenvolver o frontend de aplicação web que trate e exiba em um mapa dados de 
 ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
 ![Jest](https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white)
 ![Leaflet](https://img.shields.io/badge/Leaflet-199900?style=for-the-badge&logo=Leaflet&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
 **OBS. 1**: Conforme recomendado pela documentação do React, este projeto utiliza o **Next.js (App Router)**.
 
@@ -79,5 +79,3 @@ Execute o comando:
 ```
 npm run lint
 ```
-
-## 📌 Informações Adicionais
